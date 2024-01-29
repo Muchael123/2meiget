@@ -23,7 +23,13 @@ const Popup = () => {
         onRequestClose={closeModal}
         contentLabel="Example Modal"
       >
-        <div className='flex w-full h-full justify-center items-center bg-blue-400'>Hello Maich</div>
+        <div className='flex w-full h-full justify-center items-center bg-[#f5f5f5] text-sm font-bold'>Hello Maich
+        <form className='bg-red-400'>
+          <input />
+          <input/>
+          <input/>
+        </form>
+        </div>
       </Modal>
     </div>
   );
