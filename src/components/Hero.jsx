@@ -29,7 +29,7 @@ function Hero() {
         </div>
         <div className='flex flex-col items-center justify-center pt-6 p-2'>
             <div>
-                <p className='font-semibold mt-6'>You can also search for your lost Id Here:</p>
+                <p className='font-semibold mt-6'>You too can also search for your lost Id Here:</p>
                 <form className='flex flex-col p-2 lg:flex-row shadow-md shadow-slate-500/10 rounded-md lg:divide-x'>
                 <input onChange={(e) => setInput(e.target.value)}
                  className='w-full flex-1 p-4 outline-none rounded-md mb-4' placeholder='Enter your ID or Reg No number' />
