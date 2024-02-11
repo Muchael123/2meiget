@@ -17,12 +17,12 @@ function Hero() {
             <p className='underline text-blue-500 mb-3 text-center'>Our stats</p>
             <div className='flex flex-row justify-evenly'>
             <div>
-                <p>4000</p>
-                <p className='text-sm font-semibold text-center'>Lost and found ID's</p>
+                <p className='text-center'>440</p>
+                <p className='text-sm font-semibold text-center'>Lost ID's in our database</p>
               </div>
               <div>
-                <p>4000</p>
-                <p className='text-sm  text-center font-semibold'>Lost and found ID's</p>
+                <p>40</p>
+                <p className='text-sm  text-center font-semibold'>Found ID's</p>
               </div>
             </div>
             
