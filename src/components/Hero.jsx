@@ -9,7 +9,7 @@ function Hero() {
     <div className='flex flex-col md:flex-row justify-evenly items-start  w-full px-4 md:px-14 lg:px-20 mt-5'>
         <div className='md:text-6xl text-2xl font-semibold  md:max-w-[50%]'>
           <FaPagelines/>
-            <p className='text-green-500 font-thin'><span className='text-blue-500 font-semibold'>Helping students find their</span> Lost ID Cards</p>
+            <p className='text-green-500 font-semibold'><span className='text-blue-500 font-semibold'>Helping students find their</span> Lost ID Cards</p>
             <hr className='bg-blue-500 mt-2 h-1'/>
             <p className=' mt-4 text-sm md:text-[1.5rem] font-light'>Exciting update! Our app is geared up to shoot you a notification via SMS as soon as we locate your lost ID. Get ready for the ultimate scoop on where to retrieve it! 🌟 Stay tuned to your phone—we're on a mission to reunite you with your card, pronto!</p>
             <div className='w-full flex flex-row justify-between'><FaPagelines/>
