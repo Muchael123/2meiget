@@ -1,8 +1,9 @@
 import React from 'react'
 
+
 function Header() {
   return (
-    <div className='w-full bg-white shadow-lg flex flex-row justify-between items-center px-4 md:px-14 lg:px-20'>
+    <div className="w-full bg-[#E0EBFD]' shadow-lg flex flex-row justify-between items-center px-4 md:px-14 lg:px-20">
         {/* Left */}
         <div className='flex flex-row'>
             <img src='https://elearning.mmust.ac.ke/pluginfile.php/1/theme_synergybase/logo/1694589402/logo.png' className=' h-20 w-auto' alt='Logo' />
@@ -16,7 +17,6 @@ function Header() {
             <a href="https://my-portfolio-sepia-six.vercel.app/" className='px-2 font-light tetx-right hover:text-blue-500 transition-all duration-300 ease-in-out'>See Our Portfolio</a>
             <a href="https://github.com/Muchael123" className='font-light px-2 hover:text-blue-500 transition-all duration-300 ease-in-out'>Our Github Repo</a>
         </div>
-        
     </div>
   )
 }
