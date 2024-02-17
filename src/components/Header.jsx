@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 
 function Header() {
+  const count = useState();
+  useEffect(() => {
+    
+  })
   return (
-    <div className="w-full bg-[#E0EBFD]' shadow-lg flex flex-row justify-between items-center px-4 md:px-14 lg:px-20">
+    <div className="w-full bg-[#E0EBFD] sticky top-0 shadow-lg flex flex-row justify-between items-center px-4 md:px-14 lg:px-20">
         {/* Left */}
         <div className='flex flex-row'>
             

@@ -6,7 +6,7 @@ import Popup from "./components/Popup"
 function App() {
 
   return (
-    <div className='bg-[#E0EBFD] h-screen'>
+    <div className='bg-[#E0EBFD]'>
       {/* Header */}
       <Header/>
      {/* Hero */}
