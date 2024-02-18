@@ -1,9 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import useFetch from "../../hooks/UseFetch";
+import useWindowSize from "react-use/lib/useWindowSize";
+import Confetti from "react-confetti";
 import { MyContext } from "../../hooks/Mycontext";
 
 function Fetch() {
     const [input, setInput] = useState('')
+    const { width, height } = useWindowSize();
     const url = `https://tumeiget.vercel.app/search/?search=${input}`
     const [searchData, setSearchData] = useState('')
     const {isFound, setIsFound} = useContext(MyContext)
@@ -19,7 +22,9 @@ function Fetch() {
     }
    
   return (
+    
     <div className="flex flex-col items-center justify-center pt-6 p-2  h-full">
+        <Confetti width={width} height={height} recycle={false} gravity={0.08} run={isFound} numberOfPieces={400} />
       <div>
         <p className="font-semibold mt-6">
           You too can also search for your lost Id Here:

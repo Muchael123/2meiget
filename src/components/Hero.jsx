@@ -1,13 +1,11 @@
 import React, { useContext, useState } from "react";
-import useWindowSize from "react-use/lib/useWindowSize";
-import Confetti from "react-confetti";
 import { FaPagelines } from "react-icons/fa";
 import useFetch from "../../hooks/UseFetch";
 import Fetch from "./Fetch";
 import MyProvider, { MyContext } from "../../hooks/Mycontext";
 
 function Hero() {
-  const { width, height } = useWindowSize();
+  
   const {
     data: statsData,
     loading: statsLoading,
@@ -15,7 +13,7 @@ function Hero() {
   } = useFetch("https://tumeiget.vercel.app/stats/");
   return (
     <MyProvider>
-       <Confetti width={width} height={height} />
+       
       <div className="flex flex-col-reverse md:h-screen md:flex-row justify-evenly items-start  w-full px-4 md:px-14 lg:px-20 mt-5">
         <div className="md:text-6xl text-2xl font-semibold  md:max-w-[50%]">
           <FaPagelines />
