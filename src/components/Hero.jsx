@@ -3,7 +3,6 @@ import { FaPagelines } from "react-icons/fa";
 import useFetch from "../../hooks/UseFetch";
 import Fetch from "./Fetch";
 import MyProvider, { MyContext } from "../../hooks/Mycontext";
-import SimpleDialogDemo from './SimpleDialog'
 
 
 function Hero() {
@@ -30,7 +29,6 @@ function Hero() {
           </p>
           <div className="gap-4  p-3 flex flex-col">
             <p className="md:text-sm text-xs mt-6 mb-3 font-semibold">Give your details so we'll alert you once we find your ID</p>
-            <SimpleDialogDemo/>
             <button className="text-md  text-center rounded-md bg-blue-500 py-3 md:py-4 font-semibold w-[60%] text-white">Give us Your Details</button>
           </div>
         </div>

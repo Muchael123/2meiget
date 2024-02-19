@@ -51,7 +51,7 @@ function Fetch() {
             }`}  
             onClick={HandleSearch}
           >
-            <Popup/>
+            Search
           </button>
         </form>
       </div>
