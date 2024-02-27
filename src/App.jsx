@@ -1,3 +1,4 @@
+import Footer from "./components/Footer"
 import Header from "./components/Header"
 import Hero from "./components/Hero"
 import Popup from "./components/Popup"
@@ -12,6 +13,7 @@ function App() {
      {/* Hero */}
      <Hero />
      {/* Footer */}
+     <Footer/>
      {/* <Popup/> */}
 
       
