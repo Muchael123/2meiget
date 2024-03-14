@@ -1,20 +1,37 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SideBar from "./Admincomponents/SideBar";
 import NavbarSec from "./Admincomponents/Navbar";
+import Dashboard from "./Admincomponents/Dashboard";
+import IdUpload from "./Admincomponents/IdUpload";
+import Profile from "./Admincomponents/Profile";
 function AdminHome() {
   useEffect(() => {
     if (localStorage.getItem("user") === null) {
       window.location.href = "/Login";
     }
     console.log(localStorage.getItem("user"), "user");
-  },);
+  });
+  const [selectedItem, setSelectedItem] = useState("Dashboard");
+  const [navOpen, setNavOpen] = useState(false);
+
+  const handleSidebarItemClick = (item) => {
+    setSelectedItem(item);
+    console.log("clicked ", item);
+  };
+
+  const handleNaveOpen = () => {
+    setNavOpen(!navOpen);
+  };
+
   return (
     <div className="w-screen h-screen flex flex-col">
-      <NavbarSec />
+      <NavbarSec onclick={handleNaveOpen} />
       <div className="flex flex-row flex-1">
-        <SideBar />
-        <div className="w-full">
-          <h1 className="text-3xl text-center">Welcome to Admin Panel</h1>
+        <SideBar onItemClick={handleSidebarItemClick} />
+        <div className="w-full flex justify-normal items-center md:justify-center lg:justify-normal p-4 md:p-8 lg:p-16">
+          {selectedItem === "Dashboard" && <Dashboard />}
+          {selectedItem === "IdUpload" && <IdUpload />}
+          {selectedItem === "Profile" && <Profile />}
         </div>
       </div>
     </div>

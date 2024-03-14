@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -7,7 +7,6 @@ function Login() {
     username: "",
     password: "",
   });
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const notification = toast.loading("authenticating...");
@@ -139,16 +138,24 @@ function Login() {
           </form>
         </motion.div>
       </div>
-      <motion.img
-        // initial={{ opacity: 0, x: 1000 }}
-        // animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 2 }}
-        animate={{
-          scale: [0.8, 1, 1.3, 1],
-        }}
-        className="h-screen w-[50%] object-cover hidden md:block"
-        src="/loginimg.jpg"
-      />
+      <div className=" w-[50%] relative">
+        <motion.img
+          // initial={{ opacity: 0, x: 1000 }}
+          // animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 2 }}
+          animate={{
+            scale: [0.8, 1, 1.3, 1],
+          }}
+          className="h-screen blur-md w-[100%]	 object-cover hidden md:block"
+          src="/loginimg.jpg"
+        />
+        <div className="absolute top-0  w-[100%] h-screen flex flex-col justify-center items-center text-white">
+          <p className="text-5xl font-bold mb-4">Hello Admin</p>
+          <a href="/" className="text-[#E0EBFD]">
+            Go to search page screen
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
