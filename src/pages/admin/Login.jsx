@@ -32,7 +32,7 @@ function Login() {
 
         const access_token = data.key;
         console.log(access_token);
-        localStorage.setItem("accessToken", access_token);
+        localStorage.setItem("user", access_token);
 
         // Store the access token in local storage (you can also use cookies)
         window.location.href = "/Home";

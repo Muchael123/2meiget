@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SideBar from "./Admincomponents/SideBar";
 import NavbarSec from "./Admincomponents/Navbar";
 function AdminHome() {
+  useEffect(() => {
+    if (localStorage.getItem("user") === null) {
+      window.location.href = "/Login";
+    }
+    console.log(localStorage.getItem("user"), "user");
+  },);
   return (
     <div className="w-screen h-screen flex flex-col">
       <NavbarSec />
