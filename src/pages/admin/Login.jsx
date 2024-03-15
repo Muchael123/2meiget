@@ -64,11 +64,10 @@ function Login() {
       [name]: value,
     });
   };
-
   return (
-    <div class="w-screen min-h-screen flex flex-row  items-center justify-center bg-white">
+    <div class="w-screen  flex flex-row items-center justify-center bg-white">
       <Toaster />
-      <div className="p-4 md:p-8 flex flex-col md:w-[50%]  items-center justify-center ">
+      <div className="p-4 md:p-8 flex flex-col md:w-[50%]  items-center justify-center">
         <div className="w-full justify-center items-center flex">
           <motion.img
             initial={{ opacity: 0, y: -100 }}
@@ -138,7 +137,7 @@ function Login() {
           </form>
         </motion.div>
       </div>
-      <div className=" w-[50%] relative">
+      <div className=" w-[50%] relative hidden md:block">
         <motion.img
           // initial={{ opacity: 0, x: 1000 }}
           // animate={{ opacity: 1, x: 0 }}
@@ -146,7 +145,7 @@ function Login() {
           animate={{
             scale: [0.8, 1, 1.3, 1],
           }}
-          className="h-screen blur-md w-[100%]	 object-cover hidden md:block"
+          className="h-screen blur-md w-[100%]	 object-cover "
           src="/loginimg.jpg"
         />
         <div className="absolute top-0  w-[100%] h-screen flex flex-col justify-center items-center text-white">

@@ -3,15 +3,18 @@ import { motion } from "framer-motion";
 import { HiViewList } from "react-icons/hi";
 import { GoXCircle } from "react-icons/go";
 
-function NavbarSec() {
+function NavbarSec({ onItemClick }) {
   const [navopen, setNavOpen] = useState(false);
   const toggleNav = () => {
     setNavOpen((prevNavOpen) => !prevNavOpen);
   };
-
+  const HandleSignOut = () => {
+    localStorage.removeItem("user");
+    window.location.href = "/Login";
+  };
   return (
-    <div className="bg-[#E0EBFD]">
-      <div className="md:h-[10vh] h-fit pt-2 md:px-12 lg:px-16 w-[100vw] justify-between flex flex-row shadow-md md:shadow-lg">
+    <div className="bg-[#E0EBFD] shadow-md md:shadow-lg">
+      <div className="md:h-[10vh] h-fit pt-2 md:px-12 lg:px-16 w-[100vw] justify-between flex flex-row ">
         <motion.img
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -36,9 +39,45 @@ function NavbarSec() {
           )}
         </motion.div>
       </div>
-      <ul>
-        <li>Home</li>
-      </ul>
+      <motion.ul
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className={`flex-col text-lg justify-center divide-y-2 divide-black items-center gap-2 md:hidden ${
+          navopen ? "flex" : "hidden"
+        }`}
+      >
+        <button
+          onClick={() => {
+            onItemClick("Dashboard");
+            setNavOpen(!navopen);
+          }}
+        >
+          Dashboard
+        </button>
+        <button
+          onClick={() => {
+            onItemClick("IdUpload");
+            setNavOpen(!navopen);
+          }}
+        >
+          Add a lost Id
+        </button>
+        <button
+          onClick={() => {
+            onItemClick("Profile");
+            setNavOpen(!navopen);
+          }}
+        >
+          View profile
+        </button>
+        <button
+          className="bg-blue-500 hover:scale-105 transition-all duration-300 py-3 rounded-md text-white font-bold hover:bg-blue-400"
+          onClick={HandleSignOut}
+        >
+          Logout
+        </button>
+      </motion.ul>
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import Hero from "../../components/Hero";
-import Popup from "../../components/Popup";
 
 function Homepage() {
   return (
@@ -12,8 +11,6 @@ function Homepage() {
       <Hero />
       {/* Footer */}
       <Footer />
-      <Popup />
-      {/* <Popup/> */}
     </div>
   );
 }

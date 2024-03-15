@@ -19,14 +19,10 @@ function AdminHome() {
     console.log("clicked ", item);
   };
 
-  const handleNaveOpen = () => {
-    setNavOpen(!navOpen);
-  };
-
   return (
     <div className="w-screen h-screen flex flex-col">
-      <NavbarSec onclick={handleNaveOpen} />
-      <div className="flex flex-row flex-1">
+      <NavbarSec onItemClick={handleSidebarItemClick} />
+      <div className="flex  flex-row overflow-x-hidden">
         <SideBar onItemClick={handleSidebarItemClick} />
         <div className="w-full flex justify-normal items-center md:justify-center lg:justify-normal p-4 md:p-8 lg:p-16">
           {selectedItem === "Dashboard" && <Dashboard />}

@@ -8,7 +8,7 @@ function SideBar({ onItemClick }) {
     window.location.href = "/Login";
   };
   return (
-    <div className="lg:w-1/4 md:w-1/5 lg:px-5 bg-gray-200 h-full  md:flex flex-col justify-evenly hidden border-t-2  shadow-lg border-gray-400">
+    <div className="lg:w-1/4 md:w-1/5 lg:px-5 bg-gray-200 h-[90vh]  md:flex flex-col justify-evenly hidden border-t-2  shadow-lg border-gray-400">
       <div className="md:gap-3 gap-5 p-5 md:p-2 flex flex-col justify-start">
         <button
           onClick={() => onItemClick("Dashboard")}
