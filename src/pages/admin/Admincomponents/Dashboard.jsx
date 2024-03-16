@@ -102,7 +102,7 @@ function Dashboard() {
           <h1> IDs not picked</h1>
         </div>
       </motion.div>
-      <div>
+      <div className="h-[40vh] overflow-y-scroll">
         <h1 className="md:text-xl text-md font-semibold">Recents</h1>
         {recents.length === 0 ? (
           <h1>No recents yet</h1>

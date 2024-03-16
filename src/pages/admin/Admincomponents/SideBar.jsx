@@ -5,6 +5,7 @@ import { IoIosAddCircle } from "react-icons/io";
 function SideBar({ onItemClick }) {
   const HandleSignOut = () => {
     localStorage.removeItem("user");
+    window.location.reload();
     window.location.href = "/Login";
   };
   return (
@@ -33,7 +34,7 @@ function SideBar({ onItemClick }) {
         </button>
       </div>
       <button
-        className="mb-[50%] bg-blue-500 mx-[6%] hover:scale-105 transition-all duration-300 py-3 rounded-lg text-white font-bold hover:bg-blue-400"
+        className=" bg-blue-500 mx-[6%] hover:scale-105 transition-all duration-300 py-3 rounded-lg text-white font-bold hover:bg-blue-400"
         onClick={HandleSignOut}
       >
         Logout
