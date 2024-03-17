@@ -58,6 +58,9 @@ function Hero() {
               console.error(error);
       }
   };
+  const HandleFound = (value) => {
+    console.log("from hero ", value);
+  };
   return (
     <MyProvider>
       <Toaster />
@@ -204,7 +207,7 @@ function Hero() {
               </div>
             </div>
           </div>
-          <Fetch setFound={HandleFound} />
+          <Fetch  />
         </div>
       </div>
     </MyProvider>
