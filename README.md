@@ -12,4 +12,4 @@ After installing all the deps, run the app
 ```npm 
 npm run dev
 ``` 
-## HAPPY coding🚀🚀🚀
+## HAPPY coding🚀🚀

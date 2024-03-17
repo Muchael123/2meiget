@@ -29,11 +29,12 @@ function IdUpload() {
       body: JSON.stringify({ id_no: id }),
     });
     if (response.ok) {
+      const mydata = await response.json();
       toast.success("ID added successfully", { icon: "👍" });
-      console.log("ID added successfully");
+      console.log("ID added successfully", mydata);
     } else {
       toast.error("an error occured check network");
-      console.error("ID add error:", response.status);
+      console.error("ID add error:");
     }
   };
   return (
