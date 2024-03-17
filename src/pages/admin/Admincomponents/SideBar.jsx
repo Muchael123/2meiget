@@ -1,6 +1,7 @@
 import React from "react";
 import { FaBookOpenReader, FaUser } from "react-icons/fa6";
 import { IoIosAddCircle } from "react-icons/io";
+import { IoSearchCircleSharp } from "react-icons/io5";
 
 function SideBar({ onItemClick }) {
   const HandleSignOut = () => {
@@ -24,6 +25,13 @@ function SideBar({ onItemClick }) {
         >
           <IoIosAddCircle size={26} />
           <p>Add lost ID</p>
+        </button>
+        <button
+          onClick={() => onItemClick("IdPick")}
+          className="flex  flex-row items-center justify-center gap-5 bg-gray-100 py-4 rounded-xl shadow-lg"
+        >
+          <IoSearchCircleSharp size={26} />
+          <p>Search Id</p>
         </button>
         <button
           onClick={() => onItemClick("Profile")}

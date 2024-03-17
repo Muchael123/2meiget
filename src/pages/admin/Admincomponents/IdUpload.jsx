@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import toast, { Toaster } from "react-hot-toast";
 function IdUpload() {
   const [disable, setDisabled] = useState(false);
   const [id, setId] = useState(0);
@@ -16,6 +17,7 @@ function IdUpload() {
   };
   const handleIdSubmit = async (e) => {
     console.log("submitting");
+    toast.loading("submitting ID...", { icon: "📤", duration: 1000 });
     e.preventDefault();
     console.log(id);
     const response = await fetch("https://tumeiget.vercel.app/add/", {
@@ -27,13 +29,16 @@ function IdUpload() {
       body: JSON.stringify({ id_no: id }),
     });
     if (response.ok) {
+      toast.success("ID added successfully", { icon: "👍" });
       console.log("ID added successfully");
     } else {
+      toast.error("an error occured check network");
       console.error("ID add error:", response.status);
     }
   };
   return (
     <div className="w-full h-full ">
+      <Toaster />
       <motion.h1
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
@@ -42,7 +47,12 @@ function IdUpload() {
       >
         Upload a lost and found ID
       </motion.h1>
-      <div className="mt-3 px-4">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="mt-3 px-4"
+      >
         <h1>
           Ensure the ID details you key in are{" "}
           <span className="font-semibold text-blue-500 text-xl">correct.</span>
@@ -52,7 +62,7 @@ function IdUpload() {
           <span className="font-semibold text-blue-500 text-xl">all IDs</span>{" "}
           are found by their owners
         </h1>
-        <form className="mt-6" onSubmit={handleIdSubmit}>
+        <form className="mt-6">
           <h1 className="text-md text-blue-500 underline font-semibold">
             Enter the Identification details.
           </h1>
@@ -72,17 +82,18 @@ function IdUpload() {
               pattern="[0-9]*"
             />
           </div>
-          <input
-            type="submit"
-            value={disable ? "Submit" : "Inalid ID"}
-            disabled
-            // onClick={handleIdSubmit}
-            className={`mt-5 rounded-md hover:bg-gray-400 transition-all duration-200 font-semibold tracking-wider text-white px-5 py-2 w-[250px] ${
-              disable ? "bg-blue-500" : "bg-gray-300"
+          <button
+            onClick={handleIdSubmit}
+            className={`mt-5 rounded-md  transition-all duration-200 font-semibold tracking-wider text-white px-5 py-2 w-[250px] ${
+              disable
+                ? "bg-blue-500 hover:bg-blue-400"
+                : "bg-gray-300 hover:bg-gray-400"
             }`}
-          />
+          >
+            {disable ? "Submit" : "Inalid ID"}
+          </button>
         </form>
-      </div>
+      </motion.div>
     </div>
   );
 }

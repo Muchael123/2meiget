@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import toast, { Toaster } from "react-hot-toast";
-import convertToDateTime from "../../../../hooks/DateTimeConverter";
+import convertToDateTime from "../../../hooks/DateTimeConverter";
 
 function Dashboard() {
   const [data, setData] = useState({});
@@ -20,8 +20,9 @@ function Dashboard() {
         "https://tumeiget.vercel.app/stats/station/"
       );
       if (response.ok) {
-        const { Found, collected, not_picked } = await response.json();
-        setData({ Found, collected, not_picked });
+        const datadet = await response.json();
+        console.log(datadet);
+        setData(datadet);
       } else {
         toast.error("Failed to fetch stats");
         console.error("Stats fetch error:", response.status);
@@ -128,7 +129,7 @@ function Dashboard() {
               >
                 <h1>{recent.id_no}</h1>
                 <h1>{convertToDateTime(recent.date_found)}</h1>
-                <h1 className="hidden md:block">{recent.station}</h1>
+                <h1 className="hidden md:block">{recent.station.name}</h1>
               </motion.div>
             ))}
           </div>

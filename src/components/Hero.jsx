@@ -1,9 +1,8 @@
 import React, { useContext, useState } from "react";
 import { FaPagelines } from "react-icons/fa";
-import useFetch from "../../hooks/UseFetch";
+import useFetch from "../hooks/UseFetch";
 import Fetch from "./Fetch";
-import MyProvider, { MyContext } from "../../hooks/Mycontext";
-
+import MyProvider, { MyContext } from "../hooks/Mycontext";
 
 function Hero() {
   const {
@@ -28,11 +27,15 @@ function Hero() {
             phone—we're on a mission to reunite you with your card, pronto!
           </p>
           <div className="gap-4  p-3 flex flex-col">
-            <p className="md:text-sm text-xs mt-6 mb-3 font-semibold">Give your details so we'll alert you once we find your ID</p>
-            <button className="text-md  text-center rounded-md bg-blue-500 py-3 md:py-4 font-semibold w-[60%] text-white">Give us Your Details</button>
+            <p className="md:text-sm text-xs mt-6 mb-3 font-semibold">
+              Give your details so we'll alert you once we find your ID
+            </p>
+            <button className="text-md  text-center rounded-md bg-blue-500 py-3 md:py-4 font-semibold w-[60%] text-white">
+              Give us Your Details
+            </button>
           </div>
         </div>
-        <div className="mx-3 h-full bg-blue-500 w-1"/>
+        <div className="mx-3 h-full bg-blue-500 w-1" />
         <div className="flex  flex-col-reverse gap-2">
           <div>
             <p className="underline text-blue-500 mb-3 text-xl font-bold text-center">

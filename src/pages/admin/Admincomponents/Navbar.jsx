@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { HiViewList } from "react-icons/hi";
 import { GoXCircle } from "react-icons/go";
 
-function NavbarSec({ onItemClick }) {
+function NavbarSec({ onItemClick, username }) {
   const [navopen, setNavOpen] = useState(false);
   const toggleNav = () => {
     setNavOpen((prevNavOpen) => !prevNavOpen);
@@ -29,7 +29,7 @@ function NavbarSec({ onItemClick }) {
           className="text-gray-500  justify-center items-center flex mr-8 md:mr-3 text-2xl md:text-base"
         >
           <p className="hidden md:block font-bold border-l-2 border-gray-400 pl-2 rounded-lg hover hover:bg-blue-400 p-3 transition-all hover:text-gray-50 duration-300 text-lg">
-            Hello user
+            Hello {username}
           </p>
           {!navopen && (
             <HiViewList onClick={toggleNav} className="md:hidden block" />
@@ -62,6 +62,15 @@ function NavbarSec({ onItemClick }) {
           }}
         >
           Add a lost Id
+        </button>
+
+        <button
+          onClick={() => {
+            onItemClick("IdPick");
+            setNavOpen(!navopen);
+          }}
+        >
+          Search Id
         </button>
         <button
           onClick={() => {

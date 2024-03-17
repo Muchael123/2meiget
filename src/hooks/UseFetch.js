@@ -22,11 +22,6 @@ const useFetch = (url) => {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    fetchData();
-  }, [url]);
-
   const refetch = () => {
     fetchData();
   };
