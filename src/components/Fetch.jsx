@@ -29,9 +29,17 @@ function Fetch() {
             setIsFound(false);
             setOpenModal(false);
           } else {
-            setOpenModal(true);
-            setSearchData(data);
-            setIsFound(true);
+            if (data.picked) {
+              setOpenModal(false);
+              toast.error("ID not found. But we have your details", {
+                icon: "😢",
+                duration: 2000,
+              });
+            } else {
+              setSearchData(data);
+              console.log(data);
+              setIsFound(true);
+            }
           }
         }
       })
