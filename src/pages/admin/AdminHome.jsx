@@ -5,7 +5,7 @@ import Dashboard from "./Admincomponents/Dashboard";
 import IdUpload from "./Admincomponents/IdUpload";
 import Profile from "./Admincomponents/Profile";
 import toast from "react-hot-toast";
-import IdPick from "./Admincomponents/idPick";
+import IdPick from "./Admincomponents/IdPick";
 function AdminHome() {
   const [userDetails, setUserDeatails] = useState({});
   useEffect(() => {
