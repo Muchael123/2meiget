@@ -1,36 +1,75 @@
 import React, { useContext, useEffect, useState } from "react";
 import useFetch from "../hooks/UseFetch";
+import { Button, Modal } from "flowbite-react";
 import useWindowSize from "react-use/lib/useWindowSize";
 import Confetti from "react-confetti";
-import { MyContext } from "../hooks/Mycontext";
 import Popup from "./Popup";
+import toast, { Toaster } from "react-hot-toast";
+import convertToDateTime from "../hooks/DateTimeConverter";
 
 function Fetch() {
   const [input, setInput] = useState("");
   const { width, height } = useWindowSize();
-  const url = `https://tumeiget.vercel.app/search/?search=${input}`;
   const [searchData, setSearchData] = useState("");
-  const { isFound, setIsFound } = useContext(MyContext);
-  const { data, error, loading, refetch } = useFetch(url);
-  const [Loading, setLoading] = useState(false);
+  const [isFound, setIsFound] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const HandleSearch = (e) => {
+    toast.loading("Searching for your details", { icon: "🔍", duration: 1000 });
+    const url = `https://tumeiget.vercel.app/search/?search=${input}`;
     e.preventDefault();
-    refetch();
-    if (data) {
-      setSearchData(data);
-      setIsFound(true);
-      console.log(searchData);
-    }
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("from data ", data);
+        if (data.length === 0) {
+          setIsFound(false);
+          toast.error("No data found", { icon: "🤷‍♂️", duration: 1000 });
+        } else {
+          if (data.detail === "Not found.") {
+            toast.error("ID not found", { icon: "🤷‍♂️", duration: 2000 });
+            setIsFound(false);
+            setOpenModal(false);
+          } else {
+            setOpenModal(true);
+            setSearchData(data);
+            setIsFound(true);
+          }
+        }
+      })
+      .finally(() => {});
   };
 
   return (
     <div className="h-full">
+      <Toaster />
+      <Modal
+        className="p-5 md:translate-x-[150%] md:max-w-[350px]"
+        dismissible
+        position={"center"}
+        show={openModal}
+        onClose={() => setOpenModal(false)}
+      >
+        <Modal.Header>We found It!!!</Modal.Header>
+        <Modal.Body>
+          <div className="justify-center items-center flex flex-col">
+            <p className="text-blue-300 font-semibold tracking-widest">
+              ID details
+            </p>
+            <div>
+              <p>ID Number:{searchData.id_no}</p>
+              <p>Date found: {convertToDateTime(searchData.date_found)}</p>
+              <p>Pick-Up Point: {searchData?.station?.name}</p>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
       <div className="flex flex-col items-center justify-center pt-6 p-2  h-full">
         <Confetti
           width={width}
           height={height}
           recycle={false}
           gravity={0.08}
+          onConfettiComplete={() => setIsFound(false)}
           run={isFound}
           numberOfPieces={400}
         />
