@@ -21,7 +21,6 @@ function Dashboard() {
       );
       if (response.ok) {
         const datadet = await response.json();
-        console.log(datadet);
         setData(datadet);
       } else {
         toast.error("Failed to fetch stats");
@@ -47,7 +46,7 @@ function Dashboard() {
       if (response.ok) {
         const recentsData = await response.json();
         setRecents(recentsData);
-        console.log(recentsData);
+       
         // Process recents data if needed
       } else {
         toast.error("Failed to fetch recents");

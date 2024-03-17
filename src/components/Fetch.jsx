@@ -20,7 +20,6 @@ function Fetch() {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        console.log("from data ", data);
         if (data.length === 0) {
           setIsFound(false);
           toast.error("No data found", { icon: "🤷‍♂️", duration: 1000 });
@@ -86,7 +85,6 @@ function Fetch() {
             <input
               onChange={(e) => {
                 setInput(e.target.value);
-                console.log(input);
               }}
               type="number"
               className="p-4 md:w-[60%] w-full outline-none rounded-md mb-4 md:mb-0"

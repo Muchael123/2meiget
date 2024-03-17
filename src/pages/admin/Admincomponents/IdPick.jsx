@@ -9,11 +9,11 @@ function IdPick({ myStation }) {
   const [loading, setLoading] = useState(false);
   const [id, setId] = useState(0);
   const HandleIdSearch = async (e) => {
-    console.log("submitting");
+  
     setLoading(true);
     toast.loading("submitting ID...", { icon: "🚀", duration: 1000 });
     e.preventDefault();
-    console.log(id);
+    
     try {
       const response = await fetch(
         `https://tumeiget.vercel.app/search/?search=${id}`,
@@ -29,7 +29,6 @@ function IdPick({ myStation }) {
         toast.success("ID found", { icon: "😁🚀", duration: 5000 });
         setIdData(data);
         setLoading(false);
-        console.log("ID found", data);
       } else if (response.status === 404) {
         toast.error("Id not found" + response.status, {
           icon: "😒",
@@ -47,10 +46,10 @@ function IdPick({ myStation }) {
     }
   };
   const HandlePick = async (e) => {
-    console.log("submitting");
+    
     toast.loading("submitting ID...", { icon: "📤", duration: 1000 });
     e.preventDefault();
-    console.log(idData.id_no);
+   
     const response = await fetch("https://tumeiget.vercel.app/pick/", {
       method: "POST",
       headers: {
@@ -61,13 +60,12 @@ function IdPick({ myStation }) {
     });
     if (response.ok) {
       toast.success("ID status updated successfully", { icon: "👍" });
-      setIdData({})
+      setIdData({});
     } else {
       toast.error("an error occured check network");
       console.error("ID add error:", response.status);
     }
   };
-  
   return (
     <div className="w-full h-full">
       <Toaster />

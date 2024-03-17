@@ -33,9 +33,7 @@ function AdminHome() {
 
   const handleSidebarItemClick = (item) => {
     setSelectedItem(item);
-    console.log("clicked ", item);
   };
-  console.log(userDetails);
   return (
     <div className="w-screen h-screen flex flex-col">
       <NavbarSec

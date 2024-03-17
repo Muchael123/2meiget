@@ -11,7 +11,7 @@ function Login() {
     event.preventDefault();
     const notification = toast.loading("authenticating...");
     try {
-      console.log(formData);
+      
       const response = await fetch(
         "https://tumeiget.vercel.app/account/login/",
         {
@@ -30,7 +30,6 @@ function Login() {
         const data = await response.json();
 
         const access_token = data.key;
-        console.log(access_token);
         localStorage.setItem("user", access_token);
 
         // Store the access token in local storage (you can also use cookies)

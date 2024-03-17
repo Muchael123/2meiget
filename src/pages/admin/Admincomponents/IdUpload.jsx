@@ -8,7 +8,7 @@ function IdUpload() {
     e.preventDefault();
     const idno = e.target.value;
     setId(idno);
-    console.log(idno.toString().length);
+    
     if (idno.toString().length > 5 && idno.toString().length < 9) {
       setDisabled(true);
     } else {
@@ -16,10 +16,10 @@ function IdUpload() {
     }
   };
   const handleIdSubmit = async (e) => {
-    console.log("submitting");
+    
     toast.loading("submitting ID...", { icon: "📤", duration: 1000 });
     e.preventDefault();
-    console.log(id);
+    
     const response = await fetch("https://tumeiget.vercel.app/add/", {
       method: "POST",
       headers: {
@@ -31,7 +31,6 @@ function IdUpload() {
     if (response.ok) {
       const mydata = await response.json();
       toast.success("ID added successfully", { icon: "👍" });
-      console.log("ID added successfully", mydata);
     } else {
       toast.error("an error occured check network");
       console.error("ID add error:");

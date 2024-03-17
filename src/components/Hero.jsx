@@ -18,7 +18,6 @@ function Hero() {
       ...formData,
       [name]: value,
     });
-    console.log(formData);
   };
 
   const [openModal, setOpenModal] = useState(false);
@@ -31,7 +30,7 @@ function Hero() {
     setOpenModal((prev) => !prev);
   };
   const handleModalSubmit = (e) => {
-    console.log("clicked");
+   
     e.preventDefault();
     toast.loading("Submitting your details", { icon: "📤", duration: 1000 });
     try {
@@ -49,7 +48,7 @@ function Hero() {
             icon: "🚀😁😎",
             duration: 1000,
           });
-          console.log("from data", data);
+          
           if (isArray(data)) {
             toast.loading( data , { icon: "👍", duration: 2000 });
           }
@@ -58,9 +57,6 @@ function Hero() {
       toast.loading("Error. Check your network", { icon: "😒  ", duration: 2000 });
               console.error(error);
       }
-  };
-  const HandleFound = (value) => {
-    console.log("from hero ", value);
   };
   return (
     <MyProvider>
