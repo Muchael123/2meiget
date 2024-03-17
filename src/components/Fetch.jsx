@@ -36,6 +36,7 @@ function Fetch() {
                 duration: 2000,
               });
             } else {
+              toast.success("ID found", { icon: "🎉", duration: 2000 });
               setSearchData(data);
               console.log(data);
               setIsFound(true);
