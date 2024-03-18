@@ -97,7 +97,7 @@ function Fetch() {
               }}
               type="number"
               className="p-4 md:w-[60%] w-full outline-none rounded-md mb-4 md:mb-0"
-              placeholder="Enter your ID or Reg No number"
+              placeholder="Enter your ID number"
             />
             <button
               type="submit"
