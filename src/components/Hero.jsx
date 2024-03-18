@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import useFetch from "../hooks/UseFetch";
+import React, { useContext, useEffect, useState } from "react";
 import Fetch from "./Fetch";
 import MyProvider, { MyContext } from "../hooks/Mycontext";
 import { Modal } from "flowbite-react";
@@ -12,6 +11,25 @@ function Hero() {
     phone: "",
     id_no: "",
   });
+
+  const [statsData, setStatsData] = useState(null);
+  const [statsLoading, setStatsLoading] = useState(false);
+  const [statsError, setStatsError] = useState(null);
+
+  useEffect(() => {
+    try {
+      setStatsLoading(true);
+      fetch("https://tumeiget.vercel.app/stats/")
+        .then((response) => response.json())
+        .then((data) => {
+          setStatsData(data);
+          setStatsLoading(false);
+        });
+    } catch (error) {
+      console.error(error);
+      setStatsError("Error fetching Data");
+    }
+  }, []);
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({
@@ -21,16 +39,11 @@ function Hero() {
   };
 
   const [openModal, setOpenModal] = useState(false);
-  const {
-    data: statsData,
-    loading: statsLoading,
-    error: statsError,
-  } = useFetch("https://tumeiget.vercel.app/stats/");
+
   const HandleModal = () => {
     setOpenModal((prev) => !prev);
   };
   const handleModalSubmit = (e) => {
-   
     e.preventDefault();
     toast.loading("Submitting your details", { icon: "📤", duration: 1000 });
     try {
@@ -48,17 +61,19 @@ function Hero() {
             icon: "🚀😁😎",
             duration: 1000,
           });
-          
+
           if (isArray(data)) {
-            toast.loading( data , { icon: "👍", duration: 2000 });
+            toast.loading(data, { icon: "👍", duration: 2000 });
           }
         });
     } catch (error) {
-      toast.loading("Error. Check your network", { icon: "😒  ", duration: 2000 });
-              console.error(error);
-      }
+      toast.loading("Error. Check your network", {
+        icon: "😒  ",
+        duration: 2000,
+      });
+      console.error(error);
+    }
   };
-  
   return (
     <MyProvider>
       <Toaster />
@@ -167,9 +182,7 @@ function Hero() {
         <div className="mx-3 h-full bg-blue-500 w-1" />
         <div className="flex  flex-col-reverse gap-2">
           <div>
-            <p className="underline text-blue-500 mb-3 text-xl font-bold text-center">
-              Our stats
-            </p>
+            <p className="underline text-blue-500 mb-3 text-x ">Our stats</p>
             <div className="flex flex-row justify-evenly">
               <div>
                 {statsLoading && (
@@ -205,7 +218,7 @@ function Hero() {
               </div>
             </div>
           </div>
-          <Fetch  />
+          <Fetch />
         </div>
       </div>
     </MyProvider>
