@@ -7,7 +7,6 @@ function SideBar({ onItemClick }) {
   const HandleSignOut = () => {
     localStorage.removeItem("user");
     window.location.reload();
-    window.location.href = "/Login";
   };
   return (
     <div className="lg:w-1/4 md:w-1/5 lg:px-5 bg-gray-200 h-[90vh]  md:flex flex-col justify-evenly hidden border-t-2  shadow-lg border-gray-400">
