@@ -18,14 +18,12 @@ function Login() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
         }
-      ); // Add a comma here
+      ); // Add a comma 
 
       if (response.status === 200) {
         toast.success("Login successful", {
           id: notification,
-        }); // Add a comma here
-
-        // Login was successful
+        }); 
         const data = await response.json();
 
         const access_token = data.key;

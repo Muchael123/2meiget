@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Fetch from "./Fetch";
-import MyProvider, { MyContext } from "../hooks/Mycontext";
+import MyProvider from "../hooks/Mycontext";
 import { Modal } from "flowbite-react";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -12,30 +12,62 @@ function Hero() {
     id_no: "",
   });
 
+  const [formError, setFormError] = useState({
+    email: false,
+    name: false,
+    phone: false,
+    id_no: false,
+  });
   const [statsData, setStatsData] = useState(null);
   const [statsLoading, setStatsLoading] = useState(false);
   const [statsError, setStatsError] = useState(null);
 
-  useEffect(() => {
-    try {
-      setStatsLoading(true);
-      fetch("https://tumeiget.vercel.app/stats/")
-        .then((response) => response.json())
-        .then((data) => {
-          setStatsData(data);
-          setStatsLoading(false);
-        });
-    } catch (error) {
-      console.error(error);
-      setStatsError("Error fetching Data");
-    }
-  }, []);
+  const validateEmail = (email) => {
+    // Email validation regex
+    const re =
+      // eslint-disable-next-line no-useless-escape
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return re.test(String(email).toLowerCase());
+  };
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({
       ...formData,
       [name]: value,
     });
+    switch (name) {
+      case "name":
+        setFormError((prevState) => ({
+          ...prevState,
+          name: value.length < 4 ? "Name should be at least 4 characters" : "",
+        }));
+        break;
+      case "email":
+        setFormError((prevState) => ({
+          ...prevState,
+          email: !validateEmail(value) ? "Invalid Email" : "",
+        }));
+        break;
+      case "id_no":
+        setFormError((prevState) => ({
+          ...prevState,
+          id_no:
+            isNaN(value) || value < 99999 || value > 999999999
+              ? "Invalid id"
+              : "",
+        }));
+        break;
+      case "phone":
+        setFormError((prevState) => ({
+          ...prevState,
+          phone:
+            value.length < 10 ? "Phone number Should be 10 characters" : "",
+        }));
+        break;
+      default:
+        break;
+    }
   };
 
   const [openModal, setOpenModal] = useState(false);
@@ -45,6 +77,19 @@ function Hero() {
   };
   const handleModalSubmit = (e) => {
     e.preventDefault();
+    if (
+      formError.name ||
+      formError.email ||
+      formError.id_no ||
+      formError.phone ||
+      !formData.name ||
+      !formData.email ||
+      !formData.id_no ||
+      !formData.phone
+    ) {
+      return;
+    }
+
     toast.loading("Submitting your details", { icon: "📤", duration: 1000 });
     try {
       fetch("https://tumeiget.vercel.app/add-details/", {
@@ -74,6 +119,7 @@ function Hero() {
       console.error(error);
     }
   };
+
   return (
     <MyProvider>
       <Toaster />
@@ -94,6 +140,9 @@ function Hero() {
                   type="email"
                   className="p-2 w-full border-2 border-gray-300 rounded-md"
                 />
+                {formError.email && (
+                  <p className="text-sm text-red-500">invalid email address</p>
+                )}
               </div>
               <div className="">
                 <label>Full Name</label>
@@ -104,6 +153,9 @@ function Hero() {
                   type="text"
                   className="p-2 w-full border-2 border-gray-300 rounded-md"
                 />
+                {formError.name && (
+                  <p className="text-sm text-red-500">{formError.name}</p>
+                )}
               </div>
               <div>
                 <label>Phone Number</label>
@@ -114,6 +166,9 @@ function Hero() {
                   type="number"
                   className="p-2 w-full border-2 border-gray-300 rounded-md"
                 />
+                {formError.phone && (
+                  <p className="text-sm text-red-500">{formError.phone}</p>
+                )}
               </div>
               <div>
                 <label>Id Number</label>
@@ -124,6 +179,9 @@ function Hero() {
                   type="number"
                   className="p-2 w-full border-2 border-gray-300 rounded-md"
                 />
+                {formError.id_no && (
+                  <p className="text-sm text-red-500">{formError.id_no}</p>
+                )}
               </div>
               <button
                 className="bg-blue-500 text-white hover:bg-blue-400 transition-all duration-200 hover:scale-105 font-semibold rounded-md py-2 md:py-3"
@@ -135,6 +193,7 @@ function Hero() {
                 color="gray"
                 className="bg-gray-200 transition-all duration-200 hover:scale-105 hover:bg-red-300 font-semibold rounded-md py-2 md:py-3"
                 type="reset"
+                onClick={() => setFormData({})}
               >
                 Reset
               </button>
