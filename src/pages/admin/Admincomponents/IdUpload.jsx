@@ -90,7 +90,7 @@ function IdUpload() {
                 : "bg-gray-300 hover:bg-gray-400"
             }`}
           >
-            {disable ? "Submit" : "Inalid ID"}
+            {disable ? "Submit" : "Invalid ID"}
           </button>
         </form>
       </motion.div>
